@@ -1,9 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('clicking on tabs swaps shown content', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const tab = screen.getByText(/Blog/i);
+  fireEvent.click(tab);
+  const content = screen.getByText(/List of Posts/i);
+
+  expect(content).toBeInTheDocument();
 });
